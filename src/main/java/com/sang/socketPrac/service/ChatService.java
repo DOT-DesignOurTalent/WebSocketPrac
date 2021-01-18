@@ -22,6 +22,13 @@ public class ChatService {
     @PostConstruct
     private void init(){
         chatRooms=new LinkedHashMap<>();
+        String tempId="asdf1234";
+        ChatRoom tempRoom= ChatRoom.builder()
+                .roomId(tempId)
+                .name("임시채팅방")
+                .build();
+        chatRooms.put(tempId,tempRoom);
+
     }
     public List<ChatRoom> findAllRoom(){
         return new ArrayList<>(chatRooms.values());
