@@ -25,7 +25,14 @@ public class ChatRoom {
             sessions.add(session);
             chatMessage.setMessage(chatMessage.getSender() + "님이 입장했습니다.");
         }
-        sendMessage(chatMessage, chatService);
+        else if (chatMessage.getType().equals(ChatMessage.MessageType.TALK)) {
+            sendMessage(chatMessage, chatService);
+        }
+        else if (chatMessage.getType().equals(ChatMessage.MessageType.EXIT)) {
+            sessions.remove(session);
+            chatMessage.setMessage(chatMessage.getSender() + "님이 입장했습니다.");
+        }
+
     }
     public <T> void sendMessage(T message, ChatService chatService){
         sessions.parallelStream().forEach(session -> chatService.sendMessage(session, message));
